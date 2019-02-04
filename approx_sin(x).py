@@ -58,11 +58,11 @@ poly_approx = np.poly1d(coeffs)
         
 #put all this into one figure
 plt.figure(1)
-plt.plot(x_values, data_points, 'bo',x_values,sin_points, 'k')
-plt.plot(x_values, poly_approx(x_values), 'r')
+datapts, = plt.plot(x_values, data_points, 'bo' , label="data")
+graph, = plt.plot(x_values,sin_points, 'k', label = "sin(x)")
+approx, = plt.plot(x_values, poly_approx(x_values), 'r', label = 'approximation')
 plt.xlabel('x'), plt.ylabel('y')
-plt.title('Degree of Fit: ' + str(deg) + ', Samples: ' + str(num_pts) \
-          + ', Measurement Error: ' + str(std_dev))
+plt.legend(handles=[datapts,graph,approx])
 plt.show()
 
 print('sum of squared error from data: ' + str(np.sum((data_points-poly_approx(x_values))**2)))
